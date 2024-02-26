@@ -1,4 +1,5 @@
 # Import Module
+import os.path
 from tkinter import *
 from tkinter import filedialog as fd
 
@@ -37,10 +38,14 @@ class GUI:
         self.logger_widget.emit(f"File Selected : {filename}")
 
 
-    def run_analysis(self, file_path,start_year,end_year, quartiles=80):
-        data_analysis = Analytics(file_path=file_path,start_year=start_year,end_year=end_year,logger_ext=self.logger_widget)
-        result = data_analysis.get_daily_range(quartiles)
+    def run_analysis(self, file_path,start_year,end_year, index,quartiles=80):
+        data_analysis = Analytics(file_path=file_path,start_year=start_year,end_year=end_year,index=index,
+                                  logger_ext=self.logger_widget)
+        result, profile = data_analysis.get_daily_range(quartiles)
+        profile.to_file("Report.html")
+        report_path = os.path.abspath("Report.html")
         self.logger_widget.emit(f"Results \n{result}")
+        self.logger_widget.emit(f"HTML REPORT : \n{report_path}")
 
     def add_component(self):
         scrollbar = Scrollbar(self.root)
@@ -58,7 +63,7 @@ class GUI:
         file_name_var = StringVar()
         file_name_var.set("/Users/sayarmendis/Downloads/NIFTY 50_Historical.csv")
         start_year_var = StringVar()
-        start_year_var.set("2010")
+        start_year_var.set("2023")
         end_year_var = StringVar()
         end_year_var.set('2023')
         options = [
@@ -87,11 +92,12 @@ class GUI:
         start_year_entry.grid(column=1, row=7)
         end_year.grid(column=2, row=7)
         end_year_entry.grid(column=3, row=7)
-        (Button(self.root, text="GET RANGE", command=lambda :self.run_analysis(file_name_var.get(),
+        Button(self.root, text="GET RANGE", command=lambda :self.run_analysis(file_name_var.get(),
                                                                               start_year_var.get(),
-                                                                              end_year_var.get(),)).grid(column=1,
+                                                                              end_year_var.get(),
+                                                                              index_var.get())).grid(column=1,
                                                                                                         row=8,
-                                                                                                        columnspan=2))
+                                                                                                        columnspan=2)
 
         text.grid(row=10, column=0,columnspan=4, padx=10, pady=10)
         scrollbar.grid(row=10, column=4)

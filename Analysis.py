@@ -1,13 +1,17 @@
+import datetime
+
 import pandas
+from ydata_profiling import profile_report
 
 
 class Analytics:
-    def __init__(self, file_path, start_year, end_year, logger_ext):
+    def __init__(self, file_path, start_year, end_year, index,logger_ext):
         self.file_path = file_path
         if '.xlsx' in file_path:
             self.data = pandas.read_excel(file_path)
         if '.csv' in file_path:
-            self.data = pandas.read_csv(file_path)
+            self.data = pandas.read_csv(file_path, encoding='utf8')
+        
         self.logger = logger_ext
         self.data['Day'] = self.data['Date'].apply(self.get_day)
         self.data['Year'] = self.data['Date'].apply(self.get_year)
@@ -47,14 +51,35 @@ class Analytics:
         range_df[f'OPEN-CLOSE_{range_type}'] = (range_df['Open'] - range_df['Close']).abs()
         return range_df
 
+    def get_gap_up_down(self,data):
+        gap_data = data.copy()
+        gap = []
+        for index,row in gap_data.iterrows():
+            day_of_week = pandas.to_datetime(row['Date']).day_of_week
+            if day_of_week==0:
+                date_check = pandas.to_datetime(row['Date']) - datetime.timedelta(3)
+            else:
+                date_check = pandas.to_datetime(row['Date']) - datetime.timedelta(1)
+            last_close = list(gap_data[pandas.to_datetime(gap_data['Date']) == pandas.to_datetime(date_check)]['Close'])
+
+            if len(last_close)>0:
+                gap.append(row['Open']-last_close[0])
+            else:
+                gap.append(0)
+        gap_data['GAP'] = gap
+        return gap_data
+
     def get_daily_range(self, quartiles):
         range_data = self.find_ranges(self.date_filter_data, 'DAY')
-        cols_to_calculate = [col for col in list(range_data.columns) if '_DAY' in col]
+        gap_data = self.get_gap_up_down(self.date_filter_data)[['Date','GAP']]
+        range_data_final = pandas.merge(range_data,gap_data, on='Date')
+        profile = profile_report.ProfileReport(range_data_final)
+        cols_to_calculate = [col for col in list(range_data_final.columns) if '_DAY' in col]
         results = []
 
         for col in cols_to_calculate:
-            day_quartiles = range_data[col].quantile(quartiles / 100)
-            day_std = range_data[col].std()
+            day_quartiles = range_data_final[col].quantile(quartiles / 100)
+            day_std = range_data_final[col].std()
             day_confidence_interval = 1.96 * day_std
 
             result = {"PredictType": col,
@@ -65,7 +90,7 @@ class Analytics:
             results.append(result)
 
         results = pandas.DataFrame(results).to_string(index=None)
-        return results
+        return results,profile
 
     def monthly_range_analysis(self):
         pass
