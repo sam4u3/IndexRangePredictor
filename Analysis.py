@@ -5,7 +5,7 @@ from ydata_profiling import profile_report
 
 
 class Analytics:
-    def __init__(self, file_path, start_year, end_year, index,logger_ext):
+    def __init__(self, file_path, logger_ext):
         self.file_path = file_path
         if '.xlsx' in file_path:
             self.data = pandas.read_excel(file_path)
@@ -17,7 +17,6 @@ class Analytics:
         self.data['Year'] = self.data['Date'].apply(self.get_year)
         self.data['Month'] = self.data['Date'].apply(self.get_month)
         self.data['YearMonth'] = self.data['Date'].apply(self.get_year_month)
-        self.date_filter_data = self.get_date_filter_data(start_year, end_year)
 
     def get_day(self, date):
         return pandas.to_datetime(date).day
@@ -30,13 +29,6 @@ class Analytics:
 
     def get_year_month(self, date):
         return pandas.to_datetime(date).strftime('%Y-%m')
-
-    def get_date_filter_data(self, start_year, end_year):
-        self.logger.emit(f"Data Found : {self.data.shape}")
-        self.logger.emit(f"Data Year Range  : {self.data['Year'].min()} -  {self.data['Year'].max()}")
-        filter_data = self.data.loc[(self.data['Year'] >= int(start_year)) & (self.data['Year'] <= int(end_year))]
-        self.logger.emit(f"Filter Data for Year {start_year} - {end_year} : {filter_data.shape}")
-        return filter_data
 
     def find_ranges(self, data, range_type='DAY'):
         range_df = data.copy()
@@ -70,8 +62,8 @@ class Analytics:
         return gap_data
 
     def get_daily_range(self, quartiles):
-        range_data = self.find_ranges(self.date_filter_data, 'DAY')
-        gap_data = self.get_gap_up_down(self.date_filter_data)[['Date','GAP']]
+        range_data = self.find_ranges(self.data, 'DAY')
+        gap_data = self.get_gap_up_down(self.data)[['Date','GAP']]
         range_data_final = pandas.merge(range_data,gap_data, on='Date')
         profile = profile_report.ProfileReport(range_data_final)
         cols_to_calculate = [col for col in list(range_data_final.columns) if '_DAY' in col]
@@ -89,10 +81,5 @@ class Analytics:
 
             results.append(result)
 
-        results = pandas.DataFrame(results).to_string(index=None)
+        results = pandas.DataFrame(results).to_string(index=False)
         return results,profile
-
-    def monthly_range_analysis(self):
-        pass
-        # data_monthly = data.groupby('yearmonth').agg(min_month=pandas.NamedAgg(column="Low", aggfunc="min"),
-        #                                          max_month=pandas.NamedAgg(column="High", aggfunc="max"))
