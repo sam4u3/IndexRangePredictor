@@ -26,7 +26,13 @@ class DataExtraction:
 
     def get_data(self, start_date, end_date, index, timeframe):
         try:
-            self.driver.get(self.urls.get(index, None))
+            if timeframe=='Daily':
+                self.driver.get(self.urls.get(index, None))
+            if timeframe=='Weekly':
+                self.driver.get(self.urls.get(index, None)+'?interval_sec=weekly')
+            if timeframe=='Monthly':
+                self.driver.get(self.urls.get(index, None) + '?interval_sec=monthly')
+            self.driver.fullscreen_window()
             self.driver.find_element(By.XPATH, '//button[@class="js-dropdown-display select"]').click()
             from_date = self.driver.find_element(By.XPATH, '//input[@class="select js-date-from"]')
             from_date.clear()
@@ -35,7 +41,7 @@ class DataExtraction:
             to_date.clear()
             to_date.send_keys(pandas.to_datetime(end_date).strftime('%m/%d/%Y'))
             self.driver.find_element(By.XPATH, '//button[@class="js-apply-button common-button"]').click()
-            self.driver.find_element(By.XPATH,f'//li[@data-time-frame="{timeframe.lower()}"]').click()
+            # self.driver.find_element(By.XPATH,f'//li[@data-time-frame="{timeframe.lower()}"]').click()
             data = self.extract_data(self.driver.page_source)
             file_path = os.path.abspath(f'./Data/{index}.xlsx')
             data.to_excel(file_path, index=False)
