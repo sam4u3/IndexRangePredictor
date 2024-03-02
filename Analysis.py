@@ -72,14 +72,23 @@ class Analytics:
         for col in cols_to_calculate:
             day_quartiles = range_data_final[col].quantile(quartiles / 100)
             day_std = range_data_final[col].std()
-            day_confidence_interval = 1.96 * day_std
+
+            day_confidence_interval_95 = 1.96 * day_std
+            day_confidence_interval_99 = 2.576 * day_std
+            day_confidence_interval_80 = 1.28 * day_std
+
 
             result = {"PredictType": col,
-                      f"Quartile {quartiles}": day_quartiles,
-                      "Standard Dev": day_std,
-                      "Confidence Interval": day_confidence_interval}
+                      f"Quartile-{quartiles}": day_quartiles,
+                      "ConfidenceInterval-80": day_confidence_interval_80,
+                      "ConfidenceInterval-95": day_confidence_interval_95,
+                      "ConfidenceInterval-99": day_confidence_interval_99,
+                      }
 
+            import matplotlib.pyplot as plt
+            plt.hist(range_data_final[col], bins=20, facecolor="blue", alpha=0.5)
+            plt.savefig(f'./Data/Img/{col}.png')
             results.append(result)
 
-        results = pandas.DataFrame(results).to_string(index=False)
+        results = pandas.DataFrame(results).to_string(index=False,col_space=4,show_dimensions=True)
         return results,profile

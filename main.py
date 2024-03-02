@@ -5,6 +5,7 @@ from tkinter import filedialog as fd
 
 from Analysis import Analytics
 from extract_data import DataExtraction
+from PIL import ImageTk, Image
 
 
 class WidgetLogger():
@@ -23,7 +24,7 @@ class GUI:
     def __init__(self):
         self.root = Tk()
         self.root.title("Index Range Analysis")
-        self.root.geometry('600x600')
+        self.root.geometry('800x600')
         self.logger_widget = None
 
     def select_file(self, file_name_var):
@@ -39,7 +40,7 @@ class GUI:
         file_name_var.set(filename)
         self.logger_widget.emit(f"File Selected : {filename}")
 
-    def run_analysis(self, file_path, quartiles=80):
+    def run_analysis(self, file_path, quartiles=90):
         data_analysis = Analytics(file_path=file_path,
                                   logger_ext=self.logger_widget)
         result, profile = data_analysis.get_daily_range(quartiles)
@@ -47,6 +48,29 @@ class GUI:
         # report_path = os.path.abspath("Report.html")
         self.logger_widget.emit(f"Results \n{result}")
         # self.logger_widget.emit(f"HTML REPORT : \n{report_path}")
+        new_window = Toplevel(self.root)
+        Label(master=new_window, text="This is a new window").pack()
+
+        image1 = Image.open(r"./Data/Img/OPEN-HIGH_DAY.png")
+        image1 = image1.resize((240, 240))
+        image1 = ImageTk.PhotoImage(image1)
+
+        image2 = Image.open(r"./Data/Img/OPEN-LOW_DAY.png")
+        image2 = image2.resize((240, 240))
+        image2 = ImageTk.PhotoImage(image2)
+
+        image3 = Image.open(r"./Data/Img/HIGH-LOW_DAY.png")
+        image3 = image3.resize((240, 240))
+        image3 = ImageTk.PhotoImage(image3)
+
+        label1 = Label(master=new_window,image=image1)
+        label2 = Label(master=new_window,image=image2)
+        label3 = Label(master=new_window,image=image3)
+
+        label1.grid(row=0, column=0)
+        label2.grid(row=0, column=1)
+        label3.grid(row=1, column=0)
+
 
     def get_data(self, file_path, start_year, end_year, index, timeframe='Daily'):
         data_extraction = DataExtraction()
@@ -55,7 +79,7 @@ class GUI:
 
     def add_component(self):
         scrollbar = Scrollbar(self.root)
-        text = Text(self.root, yscrollcommand=scrollbar.set)
+        text = Text(self.root, yscrollcommand=scrollbar.set, width=100)
         scrollbar.config(command=text.yview)
         self.logger_widget = WidgetLogger(text)
 
@@ -97,7 +121,7 @@ class GUI:
         start_year_entry = Entry(self.root, textvariable=start_date_var, font=("Arial", 12))
         end_year_entry = Entry(self.root, textvariable=end_date_var, font=("Arial", 12))
 
-        header.grid(column=0, row=0, columnspan=4, rowspan=2)
+        header.grid(column=0, row=0, columnspan=6, rowspan=2)
         index_label.grid(column=0, row=5)
         index_drop.grid(column=1, row=5)
         timeframe_label.grid(column=2, row=5)
@@ -109,7 +133,7 @@ class GUI:
         end_year.grid(column=2, row=6)
         end_year_entry.grid(column=3, row=6)
         filepath_label.grid(column=0, row=7)
-        entry_file_name.grid(column=1, row=7, columnspan=3)
+        entry_file_name.grid(column=1, row=7)
 
         Button(self.root, text="GET DATA", command=lambda: self.get_data(file_name_var,
                                                                          start_date_var.get(),
@@ -121,8 +145,8 @@ class GUI:
                                                                                                            row=8,
                                                                                                            columnspan=2)
 
-        text.grid(row=10, column=0, columnspan=4, padx=10, pady=10)
-        scrollbar.grid(row=10, column=4)
+        text.grid(row=10, column=0,columnspan=6, padx=10, pady=10)
+        scrollbar.grid(row=10, column=8)
 
     def run_app(self):
         self.add_component()
