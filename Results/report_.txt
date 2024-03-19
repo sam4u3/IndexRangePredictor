@@ -1,0 +1,176 @@
+
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/Data/BANEX_DAILY.xlsx   
+
+PredictType  Quartile-90  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY      646.217             340.214889             520.954049             684.682464
+  OPEN-LOW_DAY      645.412             359.668473             550.742349             723.832802
+CLOSE-HIGH_DAY      639.476             334.015215             511.460798             672.205621
+ CLOSE-LOW_DAY      637.442             338.703979             518.640467             681.641757
+  HIGH-LOW_DAY     1020.808             394.723658             604.420601             794.381361
+OPEN-CLOSE_DAY      647.277             338.655725             518.566580             681.544647
+
+PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         494       338/156        414/80        454/40
+  OPEN-LOW_DAY         494       319/175        419/75        459/35
+CLOSE-HIGH_DAY         494       333/161        416/78        449/45
+ CLOSE-LOW_DAY         494       319/175        403/91        454/40
+  HIGH-LOW_DAY         494       118/376       295/199        396/98
+OPEN-CLOSE_DAY         494       312/182        407/87        450/44
+
+------------------------------------------------------------------
+
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/Data/fiancials_DAILY.xlsx   
+
+PredictType  Quartile-90  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY      231.130             126.341774             193.460841             254.262820
+  OPEN-LOW_DAY      262.625             134.788268             206.394535             271.261388
+CLOSE-HIGH_DAY      251.220             125.957301             192.872117             253.489068
+ CLOSE-LOW_DAY      238.435             121.685368             186.330719             244.891802
+  HIGH-LOW_DAY      368.350             145.696416             223.097638             293.214038
+OPEN-CLOSE_DAY      251.135             122.716051             187.908953             246.966053
+
+   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         494       337/157        416/78        457/37
+  OPEN-LOW_DAY         494       326/168        415/79        449/45
+CLOSE-HIGH_DAY         494       341/153        412/82        446/48
+ CLOSE-LOW_DAY         494       305/189        402/92        448/46
+  HIGH-LOW_DAY         494       106/388       285/209       382/112
+OPEN-CLOSE_DAY         494       314/180        402/92        444/50
+
+------------------------------------------------------------------
+
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/Data/niftbank_DAILY.xlsx
+
+PredictType  Quartile-90  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY       543.88             290.710781             445.150883             585.055446
+  OPEN-LOW_DAY       567.64             306.986204             470.072625             617.809736
+CLOSE-HIGH_DAY       570.28             292.153671             447.360309             587.959263
+ CLOSE-LOW_DAY       552.47             290.789046             445.270727             585.212956
+  HIGH-LOW_DAY       888.00             344.542366             527.580497             693.391511
+OPEN-CLOSE_DAY       536.43             289.135254             442.738358             581.884699
+
+   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         494       340/154        407/87        456/38
+  OPEN-LOW_DAY         494       322/172        406/88        454/40
+CLOSE-HIGH_DAY         494       337/157        416/78        448/46
+ CLOSE-LOW_DAY         494       311/183        398/96        453/41
+  HIGH-LOW_DAY         494       116/378       291/203       394/100
+OPEN-CLOSE_DAY         494       325/169        398/96        450/44
+
+------------------------------------------------------------------
+
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/Data/Nifty50_Daily.xlsx
+
+PredictType  Quartile-90  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY      167.155              90.447995             138.498493             182.026591
+  OPEN-LOW_DAY      209.840             108.856500             166.686516             219.073706
+CLOSE-HIGH_DAY      191.680             103.176783             157.989450             207.643277
+ CLOSE-LOW_DAY      181.675              93.880387             143.754343             188.934280
+  HIGH-LOW_DAY      282.465             110.262297             168.839143             221.902874
+OPEN-CLOSE_DAY      194.685              97.763298             149.700050             196.748637
+
+   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         494       323/171        410/84        455/39
+  OPEN-LOW_DAY         494       317/177        408/86        449/45
+CLOSE-HIGH_DAY         494       348/146        418/76        452/42
+ CLOSE-LOW_DAY         494       284/210       392/102        451/43
+  HIGH-LOW_DAY         494        90/404       264/230       382/112
+OPEN-CLOSE_DAY         494       317/177        405/89        447/47
+
+------------------------------------------------------------------
+
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/Data/sensex_DAILY.xlsx
+
+PredictType  Quartile-90  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY      593.062             321.961709             493.003867             647.947939
+  OPEN-LOW_DAY      714.685             373.808703             572.394576             752.290014
+CLOSE-HIGH_DAY      660.768             340.477108             521.355572             685.210180
+ CLOSE-LOW_DAY      616.483             323.900259             495.972271             651.849271
+  HIGH-LOW_DAY      957.047             367.324107             562.465039             739.239765
+OPEN-CLOSE_DAY      677.632             333.706499             510.988077             671.584330
+
+   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         494       320/174        411/83        457/37
+  OPEN-LOW_DAY         494       323/171        412/82        450/44
+CLOSE-HIGH_DAY         494       346/148        410/84        451/43
+ CLOSE-LOW_DAY         494       289/205       394/100        451/43
+  HIGH-LOW_DAY         494        80/414       264/230       376/118
+OPEN-CLOSE_DAY         494       315/179        397/97        442/52
+
+
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/Data/hist_india_vix_-01-01-2023-to-31-12-2023.csv
+
+   PredictType  Quartile-90  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY      1.06625               0.632354               0.968293               1.272613
+  OPEN-LOW_DAY      1.71000               0.884239               1.353992               1.779532
+CLOSE-HIGH_DAY      0.95500               0.439725               0.673329               0.884946
+ CLOSE-LOW_DAY      1.82750               0.948125               1.451816               1.908101
+  HIGH-LOW_DAY      2.27125               0.943942               1.445411               1.899683
+OPEN-CLOSE_DAY      0.84000               0.488365               0.747809               0.982834
+
+[6 rows x 5 columns]   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         246        174/72        214/32        229/17
+  OPEN-LOW_DAY         246        157/89        197/49        225/21
+CLOSE-HIGH_DAY         246       132/114        192/54        217/29
+ CLOSE-LOW_DAY         246        168/78        203/43        224/22
+  HIGH-LOW_DAY         246        87/159        167/79        205/41
+OPEN-CLOSE_DAY         246        179/67        213/33        230/16
+
+[6 rows x 5 columns]
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/data/NIFTY50_yf.xlsx
+
+   PredictType  Quartile-90  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY   167.170703              90.426723             138.465920             181.983781
+  OPEN-LOW_DAY   209.910547             108.904693             166.760311             219.170694
+CLOSE-HIGH_DAY   191.719141             103.218863             158.053885             207.727963
+ CLOSE-LOW_DAY   181.899609              93.862344             143.726714             188.897967
+  HIGH-LOW_DAY   282.610156             110.068315             168.542108             221.512484
+OPEN-CLOSE_DAY   194.739453              97.778508             149.723340             196.779246
+
+[6 rows x 5 columns]   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         493       322/171        409/84        454/39
+  OPEN-LOW_DAY         493       316/177        407/86        448/45
+CLOSE-HIGH_DAY         493       347/146        418/75        452/41
+ CLOSE-LOW_DAY         493       283/210       391/102        449/44
+  HIGH-LOW_DAY         493        89/404       263/230       380/113
+OPEN-CLOSE_DAY         493       316/177        404/89        446/47
+
+[6 rows x 5 columns]
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/data/NIFTY50_yf.xlsx
+
+   PredictType  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY              90.426723             138.465920             181.983781
+  OPEN-LOW_DAY             108.904693             166.760311             219.170694
+CLOSE-HIGH_DAY             103.218863             158.053885             207.727963
+ CLOSE-LOW_DAY              93.862344             143.726714             188.897967
+  HIGH-LOW_DAY             110.068315             168.542108             221.512484
+OPEN-CLOSE_DAY              97.778508             149.723340             196.779246
+
+[6 rows x 4 columns]   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY         493       322/171        409/84        454/39
+  OPEN-LOW_DAY         493       316/177        407/86        448/45
+CLOSE-HIGH_DAY         493       347/146        418/75        452/41
+ CLOSE-LOW_DAY         493       283/210       391/102        449/44
+  HIGH-LOW_DAY         493        89/404       263/230       380/113
+OPEN-CLOSE_DAY         493       316/177        404/89        446/47
+
+[6 rows x 5 columns]
+/Users/sayarmendis/PycharmProjects/IndexRangePredictor/data/NIFTY50_yf.xlsx
+
+   PredictType  ConfidenceInterval-80  ConfidenceInterval-95  ConfidenceInterval-99
+ OPEN-HIGH_DAY             554.598790             849.229397            1116.130065
+  OPEN-LOW_DAY             521.457191             798.481324            1049.432597
+CLOSE-HIGH_DAY             509.899064             780.782941            1026.171865
+ CLOSE-LOW_DAY             581.547752             890.494995            1170.364851
+  HIGH-LOW_DAY             472.070251             722.857572             950.041381
+OPEN-CLOSE_DAY             500.353737             766.166659            1006.961895
+
+[6 rows x 4 columns]   PredictType  TotalCount COB-80-IN/OUT COB-95-IN/OUT COB-99-IN/OUT
+ OPEN-HIGH_DAY          36         15/21         25/11          31/5
+  OPEN-LOW_DAY          36         20/16          30/6          32/4
+CLOSE-HIGH_DAY          36         19/17         25/11          34/2
+ CLOSE-LOW_DAY          36         20/16          28/8          32/4
+  HIGH-LOW_DAY          36          2/34          4/32         13/23
+OPEN-CLOSE_DAY          36         16/20         25/11          31/5
+
+[6 rows x 5 columns]

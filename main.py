@@ -41,40 +41,23 @@ class GUI:
         self.logger_widget.emit(f"File Selected : {filename}")
 
     def run_analysis(self, file_path, quartiles=90):
+        self.logger_widget.emit(f"File : \n{file_path}\n")
         data_analysis = Analytics(file_path=file_path,
                                   logger_ext=self.logger_widget)
-        result, profile = data_analysis.get_daily_range(quartiles)
-        # profile.to_file("Report.html")
-        # report_path = os.path.abspath("Report.html")
-        self.logger_widget.emit(f"Results \n{result}")
-        # self.logger_widget.emit(f"HTML REPORT : \n{report_path}")
-        new_window = Toplevel(self.root)
-        Label(master=new_window, text="This is a new window").pack()
+        result, occurrence = data_analysis.get_daily_range(quartiles)
+        self.logger_widget.emit(f"Results \n{result}\n")
+        self.logger_widget.emit(f"Occurrence \n{occurrence}")
 
-        image1 = Image.open(r"./Data/Img/OPEN-HIGH_DAY.png")
-        image1 = image1.resize((240, 240))
-        image1 = ImageTk.PhotoImage(image1)
+        report = './Results/report_.txt'
+        with open(report,'a+') as f:
+            f.write(f'\n{file_path}\n\n')
+            f.write(result)
+            f.write(occurrence)
 
-        image2 = Image.open(r"./Data/Img/OPEN-LOW_DAY.png")
-        image2 = image2.resize((240, 240))
-        image2 = ImageTk.PhotoImage(image2)
-
-        image3 = Image.open(r"./Data/Img/HIGH-LOW_DAY.png")
-        image3 = image3.resize((240, 240))
-        image3 = ImageTk.PhotoImage(image3)
-
-        label1 = Label(master=new_window,image=image1)
-        label2 = Label(master=new_window,image=image2)
-        label3 = Label(master=new_window,image=image3)
-
-        label1.grid(row=0, column=0)
-        label2.grid(row=0, column=1)
-        label3.grid(row=1, column=0)
-
-
-    def get_data(self, file_path, start_year, end_year, index, timeframe='Daily'):
+    def get_data(self, file_path, start_year, end_year, index, timeframe='1d'):
         data_extraction = DataExtraction()
-        file_path_excel = data_extraction.get_data(start_year, end_year, index, timeframe)
+        # file_path_excel = data_extraction.get_data(start_year, end_year, index, timeframe)
+        file_path_excel = data_extraction.get_data_yf(start_year, end_year, index, timeframe)
         file_path.set(file_path_excel)
 
     def add_component(self):
@@ -95,9 +78,9 @@ class GUI:
         file_name_var = StringVar()
         file_name_var.set("/Users/sayarmendis/Downloads/NIFTY 50_Historical.csv")
         start_date_var = StringVar()
-        start_date_var.set("01-01-2023")
+        start_date_var.set("2022-01-01")
         end_date_var = StringVar()
-        end_date_var.set('31-01-2023')
+        end_date_var.set('2023-12-31')
         options = [
             'BANKEX',
             'FINNIFTY',
@@ -105,14 +88,10 @@ class GUI:
             'NIFTY50',
             'SENSEX'
         ]
-        timeframes = [
-            'Daily',
-            'Weekly',
-            'Monthly'
-        ]
+        timeframes = ['5m','15m', '1h', '1d', '5d', '1wk', '1mo', '3mo']
 
         index_var.set("NIFTY50")
-        timeframe_var.set('Daily')
+        timeframe_var.set('1d')
         index_drop = OptionMenu(self.root, index_var, *options)
         timeframe_drop = OptionMenu(self.root, timeframe_var, *timeframes)
 
